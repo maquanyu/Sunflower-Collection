@@ -1,0 +1,4 @@
+Ubuntu18.04没有libmatio2，只有libmatio4
+因此安装libmatio4以后执行：
+ln -s /usr/lib/x86_64-linux-gnu/libmatio.so.4 /usr/lib/x86_64-linux-gnu/libmatio.so
+然后安装matio
