@@ -1,0 +1,29 @@
+因为我们使用的是cuda9.0以上，如果直接安装torch的话需要遇到这种问题：
+
+...
+[ 15%] Building NVCC (Device) object lib/THC/CMakeFiles/THC.dir/THC_generated_THCTensorMathReduce.cu.o
+2 errors detected in the compilation of "/tmp/tmpxft_00002141_00000000-4_THCTensorMath.cpp4.ii".
+CMake Error at THC_generated_THCTensorMath.cu.o.cmake:267 (message):
+  Error generating file
+  /home/ubuntu/torch/extra/cutorch/build/lib/THC/CMakeFiles/THC.dir//./THC_generated_THCTensorMath.cu.o
+
+
+lib/THC/CMakeFiles/THC.dir/build.make:112: recipe for target 'lib/THC/CMakeFiles/THC.dir/THC_generated_THCTensorMath.cu.o' failed
+make[2]: *** [lib/THC/CMakeFiles/THC.dir/THC_generated_THCTensorMath.cu.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+^Clib/THC/CMakeFiles/THC.dir/build.make:105: recipe for target 'lib/THC/CMakeFiles/THC.dir/THC_generated_THCTensorCopy.cu.o' failed
+make[2]: *** [lib/THC/CMakeFiles/THC.dir/THC_generated_THCTensorCopy.cu.o] Interrupt
+lib/THC/CMakeFiles/THC.dir/build.make:140: recipe for target 'lib/THC/CMakeFiles/THC.dir/THC_generated_THCTensorMathPairwise.cu.o' failed
+make[2]: *** [lib/THC/CMakeFiles/THC.dir/THC_generated_THCTensorMathPairwise.cu.o] Interrupt
+CMakeFiles/Makefile2:172: recipe for target 'lib/THC/CMakeFiles/THC.dir/all' failed
+make[1]: *** [lib/THC/CMakeFiles/THC.dir/all] Interrupt
+Makefile:127: recipe for target 'all' failed
+make: *** [all] Interrupt
+遇到这种错误是因为最新版的cuda和torch不兼容的问题，我们需要设置一下环境变量：
+
+export TORCH_NVCC_FLAGS="-D__CUDA_NO_HALF_OPERATORS__"
+设置好之后，执行：
+
+ ./clean.sh 
+清除之前的安装文件。
+继续使用命令：./install.sh安装。
