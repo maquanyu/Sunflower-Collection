@@ -1,0 +1,30 @@
+笔者电脑已经安装了Anaconda3，现再安装anaconda2，过程如下： 
+不需要create新环境，直接运行以下代码，其中py2是新的环境名：
+
+$ bash Anaconda2-5.0.1-Linux-x86_64.sh -b -p $HOME/anaconda3/envs/py2
+$ rm -f $HOME/anaconda3/envs/py2/bin/conda*
+$ rm -f $HOME/anaconda3/envs/py2/conda-meta/conda-*
+$ rm -f $HOME/anaconda3/envs/py2/bin/activate
+$ rm -f $HOME/anaconda3/envs/py2/bin/deactivate
+$ cd $HOME/anaconda3/envs/py2/bin
+$ ln -s ../../../bin/conda .
+$ ln -s ../../../bin/activate .
+$ ln -s ../../../bin/deactivate .
+1
+2
+3
+4
+5
+6
+7
+8
+9
+通过命令switch python 来查看当前Python的版本 
+通过命令source activate py2 来激活anaconda2的环境，通过命令source deactivate py2 来返回anaconda3的环境
+
+补充说明：如果当前已经激活了某个Python环境，那么就可以在当前环境开始安装第三方包。
+--------------------- 
+作者：嘿芝麻 
+来源：CSDN 
+原文：https://blog.csdn.net/zw__chen/article/details/78903157 
+版权声明：本文为博主原创文章，转载请附上博文链接！
